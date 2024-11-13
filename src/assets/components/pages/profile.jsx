@@ -1,8 +1,10 @@
-import React, { useState } from "react";
-import Achievements from "./achievment";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Achievements from './achievment';
 
 const UserProfile = () => {
   const [profileImage, setProfileImage] = useState(null);
+  const navigate = useNavigate();
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -15,9 +17,20 @@ const UserProfile = () => {
     }
   };
 
+  const handleRegisterClick = () => {
+    navigate('/register');
+  };
+
   return (
-    <div className="bg-gray-900 text-white p-5 md:ml-[10%]  rounded-lg max-w-full flex flex-col md:flex-row justify-evenly min-h-screen">
+    <div className="bg-gray-900 text-white p-5 md:ml-[10%] rounded-lg max-w-full flex flex-col md:flex-row justify-evenly min-h-screen">
       <div className="w-full md:w-[50%] pl-0 md:pl-28 flex flex-col gap-10">
+        <button
+          onClick={handleRegisterClick}
+          className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
+        >
+          Зарегистрироваться
+        </button>
+
         <div className="bg-gray-800 w-full h-[255px] p-4 rounded-lg flex items-center justify-center relative">
           {profileImage ? (
             <img
@@ -36,7 +49,6 @@ const UserProfile = () => {
               />
             </label>
           )}
-          {/* Edit Button for Changing Image */}
           {profileImage && (
             <label className="absolute top-2 right-2 bg-gray-700 p-2 rounded-full cursor-pointer">
               <span className="text-gray-400">✎</span>
@@ -51,7 +63,7 @@ const UserProfile = () => {
         </div>
 
         <div className="text-center space-y-1 flex flex-col items-start pb-10 border-b-2 border-b-white">
-          <h2 className="text-2xl font-bold">z6MXBcBR</h2>
+          <h2 className="text-2xl font-bold">Нет никнейма </h2>
           <p className="text-gray-400 text-xl">Регистрация: ноябрь 2024</p>
           <div className="flex justify-center text-xl space-x-4 text-gray-400">
             <span>0 подписок</span>
@@ -81,7 +93,6 @@ const UserProfile = () => {
         </div>
         <Achievements />
       </div>
-
       <div className="flex flex-col-reverse justify-end pt-[5rem] gap-[3rem] w-full md:w-[368px]">
         <div className="bg-gray-800 p-4 rounded-lg">
           <div className="space-y-2 h-full flex flex-col justify-between">
